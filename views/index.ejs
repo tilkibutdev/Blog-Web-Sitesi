@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kart Galerisi</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --card-bg: #1e1e1e;
+      --text: #f1f1f1;
+      --accent: #007bff;
+      --border: #333;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    nav {
+      background-color: #000;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .search-desktop input {
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      border: none;
+      background: #2a2a2a;
+      color: white;
+    }
+
+    /* Hamburger Menü */
+    .hamburger {
+      display: none;
+      width: 30px;
+      height: 22px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .hamburger span {
+      background: white;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      left: 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+    .hamburger span:nth-child(3) { top: 18px; }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 9px;
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 9px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #111;
+      padding: 1rem;
+    }
+
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      margin: 0.5rem 0;
+    }
+
+    .mobile-menu.show {
+      display: flex;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 2rem 0 1rem;
+    }
+
+    /* Mobil Arama */
+    .search-mobile {
+      display: none;
+      text-align: center;
+      margin: 1rem auto;
+    }
+
+    .search-mobile input {
+      padding: 0.5rem 1rem;
+      width: 90%;
+      max-width: 400px;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #222;
+      color: white;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      width: 250px;
+      transition: transform 0.2s;
+      border: 1px solid var(--border);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #bbb;
+    }
+
+    .card-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links,
+      .search-desktop {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .search-mobile {
+        display: block;
+      }
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Kart Galerisi</div>
+
+    <!-- Masaüstü Arama -->
+    <div class="search-desktop">
+      <input type="text" id="searchInputDesktop" placeholder="Kart ara...">
+    </div>
+
+    <!-- Menü Linkleri -->
+    <div class="nav-links">
+      <a href="/">Anasayfa</a>
+      <a href="/hakkinda">Hakkında</a>
+      <a href="/iletisim">İletişim</a>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Mobil Menü -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/">Anasayfa</a>
+    <a href="/hakkinda">Hakkında</a>
+    <a href="/iletisim">İletişim</a>
+  </div>
+
+  <!-- Mobil Arama -->
+  <div class="search-mobile">
+    <input type="text" id="searchInputMobile" placeholder="Kart ara...">
+  </div>
+
+  <!-- Başlık -->
+  <h1>Kartlar</h1>
+
+  <!-- Kartlar -->
+  <div class="card-container" id="cardContainer">
+    <% kartlar.forEach(kart => { %>
+      <div class="card" data-isim="<%= kart.isim.toLowerCase() %>">
+        <h2><%= kart.isim %></h2>
+        <p><%= kart.aciklama %></p>
+        <a href="/kart/<%= slugify(kart.isim) %>" class="card-button">Detay</a>
+      </div>
+    <% }); %>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function toggleMenu() {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('show');
+    }
+
+    const searchDesktop = document.getElementById('searchInputDesktop');
+    const searchMobile = document.getElementById('searchInputMobile');
+    const cards = document.querySelectorAll('.card');
+
+    function filterCards(query) {
+      cards.forEach(card => {
+        const isim = card.getAttribute('data-isim');
+        card.style.display = isim.includes(query) ? 'block' : 'none';
+      });
+    }
+
+    if (searchDesktop) {
+      searchDesktop.addEventListener('input', () => {
+        filterCards(searchDesktop.value.toLowerCase());
+      });
+    }
+
+    if (searchMobile) {
+      searchMobile.addEventListener('input', () => {
+        filterCards(searchMobile.value.toLowerCase());
+      });
+    }
+  </script>
+</body>
+</html>
