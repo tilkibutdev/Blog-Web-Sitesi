@@ -1,0 +1,12 @@
+[
+  {
+    "isim": "Örnek Kart",
+    "aciklama": "For Example",
+    "icerik-html": "<p>Bu bir açıklama</p><code>Hello, World!</code><not>Bu kod örnek amaçlıdır.</not><uyari>Etiketleri düzgün kapatmalısınız!</uyari>"
+  },
+  {
+    "isim": "Örnek Kart 2",
+    "aciklama": "For Example 2",
+    "icerik-html": "<p>Bu bir açıklama</p><code>Hello, World!</code><not>Bu kod örnek amaçlıdır.</not><uyari>Etiketleri düzgün kapatmalısınız!</uyari>"
+  }
+]
