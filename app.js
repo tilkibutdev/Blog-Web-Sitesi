@@ -2,31 +2,29 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const path = require("path");
-const PORT = 3000; //Port'u ayarlamayı unutmayın :)
+const { slugify } = require("./function/slugify");
+const { cardData } = require("./function/card data");
+const settings = require("./data/settings.json")
+
+
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static('static'));
 
-const kartVerisi = JSON.parse(fs.readFileSync("data/kartlar.json", "utf-8")); //kart bilgilerini json ile al
-
-// URL uyumlu hale getirmek için
-function slugify(str) {
-  return str.toLowerCase().replace(/\s+/g, "-");
-}
-
-// Ana sayfa (views/index.ejs)
 app.get("/", (req, res) => {
-  res.render("index", { kartlar: kartVerisi, slugify });
+  res.render("index", { cards: cardData, slugify });
 });
 
-// Detay sayfası (sayfa linkini oto yapar başlığa göre) (views/index.ejs)
-app.get("/kart/:isim", (req, res) => {
-  const kart = kartVerisi.find(
-    (k) => slugify(k.isim) === req.params.isim.toLowerCase()
+
+app.get("/card/:isim", (req, res) => {
+  const card = cardData.find(
+    (c) => slugify(c.isim) === req.params.isim.toLowerCase()
   );
+  
+  if (!cardData) return res.status(404).send("Card undefiend");
 
-  if (!kart) return res.status(404).send("Kart bulunamadı");
-
-  res.render("detay", { kart });
+  res.render("detay", { card });
 });
 
-app.listen(PORT, () => console.log(`http://localhost:${PORT} çalışıyor.`));
+app.listen(settings.port, () => {
+  console.log(`http://localhost:${settings.port} on ready.`)
+});

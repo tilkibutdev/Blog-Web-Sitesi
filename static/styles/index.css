@@ -1,0 +1,219 @@
+:root {
+    --bg: #121212;
+    --card-bg: #1e1e1e;
+    --text: #f1f1f1;
+    --accent: #007bff;
+    --border: #333;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+.logo {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+h1 {
+    text-align: center;
+    margin: 2rem 0 1rem;
+}
+
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 250px;
+    transition: transform 0.2s;
+    border: 1px solid var(--border);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    font-size: 1.3rem;
+    color: var(--text);
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: #bbb;
+}
+
+.card-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+
+    .nav-links,
+    .search-desktop {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .search-mobile {
+        display: block;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #f0f0f0;
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+a {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+.detay {
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.detay h1 {
+    margin-top: 0;
+    color: #ffc107;
+}
+
+.detay p {
+    margin-bottom: 1rem;
+}
+
+.detay code {
+    display: block;
+    background-color: #2d2d2d;
+    color: #90ee90;
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+.detay div>* {
+    display: block;
+    margin-top: 1rem;
+}
+
+uyari,
+not {
+    display: block;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+uyari::before {
+    content: "⚠️ Uyarı: ";
+    font-weight: bold;
+}
+
+uyari {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+not::before {
+    content: "📝 Not: ";
+    font-weight: bold;
+}
+
+not {
+    background-color: #ffc107;
+    color: #000;
+}
+
+
+
+
+
+
+
+.page-wrapper {
+    max-width: 720px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.detay-card {
+    background-color: rgb(0, 0, 0);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.detay-card h1 {
+    margin-top: 0;
+    font-size: 2rem;
+}
+
+.aciklama {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.icerik {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.icerik img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
