@@ -15,9 +15,9 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/card/:isim", (req, res) => {
+app.get("/card/:id", (req, res) => {
   const card = cardData.find(
-    (c) => slugify(c.isim) === req.params.isim.toLowerCase()
+    (c) => slugify(c.id) === req.params.isim.toLowerCase()
   );
   
   if (!cardData) return res.status(404).send("Card undefiend");
